@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://d2d7h0o44leo7"]
+
+[ext_resource type="Texture2D" uid="uid://diy4tbvaui748" path="res://Spritesheets/spritesheet-enemies-default.png" id="1_ftops"]
+[ext_resource type="Script" uid="uid://cb5ek145y7wki" path="res://_Scripts/enemy.gd" id="1_qeym4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qeym4"]
+atlas = ExtResource("1_ftops")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bnyri"]
+atlas = ExtResource("1_ftops")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8ccf5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qeym4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bnyri")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ftops"]
+radius = 26.0
+
+[node name="Enemy" type="Area2D" unique_id=2019368442]
+script = ExtResource("1_qeym4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2109471081]
+sprite_frames = SubResource("SpriteFrames_8ccf5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=706760462]
+shape = SubResource("CircleShape2D_ftops")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
