@@ -4,11 +4,30 @@ extends CharacterBody2D
 @export var jump_velocity = -400.0
 @export var acceleration = 100
 
+@export var projectile : PackedScene
+
+var hasReset: bool = false
+
 func _ready() -> void:
 	$AnimatedSprite2D.play()
 
 func restart_level() -> void:
+	if hasReset:
+		return
+	hasReset=true
 	get_tree().reload_current_scene()
+
+func launch_projectile() -> void:
+	var new_proj:Node = projectile.instantiate()
+	new_proj.position = position
+	if $AnimatedSprite2D.flip_h:
+		#we are moving left
+		new_proj.position.x -= 70
+		new_proj.speed = -new_proj.speed
+	else:
+		#we are moving right
+		new_proj.position.x += 70
+	get_parent().add_child(new_proj)
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("move_right"):
@@ -28,6 +47,9 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 		$AnimatedSprite2D.animation = "jump"
+	
+	if Input.is_action_just_pressed("fire"):
+		launch_projectile()
 		
 	if position.y > 800:
 		restart_level()
