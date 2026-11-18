@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cvxr6kqyf42bg"]
+
+[ext_resource type="Script" uid="uid://eeuan1gwadnp" path="res://_Scripts/mp_player.gd" id="1_1nmlx"]
+[ext_resource type="Texture2D" uid="uid://ub68ubb8n3rn" path="res://icon.svg" id="1_w5inr"]
+
+[node name="MpPlayer" type="Sprite2D" unique_id=1258428108]
+texture = ExtResource("1_w5inr")
+script = ExtResource("1_1nmlx")

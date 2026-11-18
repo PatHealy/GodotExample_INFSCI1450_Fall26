@@ -7,7 +7,14 @@ func _ready() -> void:
 	$AnimationPlayer.play("dance")
 
 func _process(delta: float) -> void:
+	if PauseHandler.paused:
+		$AnimationPlayer.pause()
+		return
+	else:
+		$AnimationPlayer.play()
+	
 	if Input.is_action_pressed("move_up"):
+		
 		position = position + Vector3.BACK*speed*delta
 		$AnimationPlayer.play("walk")
 	else:
