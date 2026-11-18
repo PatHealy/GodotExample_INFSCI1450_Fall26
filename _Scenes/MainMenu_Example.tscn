@@ -1,10 +1,13 @@
 [gd_scene format=3 uid="uid://dd63b2wpygudw"]
 
+[ext_resource type="Script" uid="uid://71y01kp411w4" path="res://_Scripts/main_menu.gd" id="1_m33uu"]
+
 [node name="MainMenuExample" type="Node2D" unique_id=2084442315]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1780610757]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=766171805]
+script = ExtResource("1_m33uu")
 
 [node name="Title" type="RichTextLabel" parent="CanvasLayer" unique_id=1900205214]
 anchors_preset = -1
@@ -40,3 +43,6 @@ grow_horizontal = 2
 size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 55
 text = "Quit"
+
+[connection signal="button_down" from="CanvasLayer/StartButton" to="CanvasLayer" method="_on_start_button_button_down"]
+[connection signal="button_down" from="CanvasLayer/QuitButton" to="CanvasLayer" method="_on_quit_button_button_down"]
